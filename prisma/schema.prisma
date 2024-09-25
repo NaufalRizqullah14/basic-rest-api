@@ -12,7 +12,15 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-
+model admin {
+  id                 Int                  @id @default(autoincrement())
+  name               String               @default("")
+  email              String               @unique @default("")
+  password           String               @default("")
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @default(now())
+  
+}
 model medicine {
   id                 Int                  @id @default(autoincrement())
   name               String               @default("")
@@ -22,6 +30,7 @@ model medicine {
   price              Float                @default(0) @db.Double
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @default(now())
+  photo              String               @default("")
   transaction_detail transaction_detail[]
 }
 
